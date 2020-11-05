@@ -1,0 +1,328 @@
+<div class="card">
+    <div class="card-body">
+        <div class="form-container">
+            <h1>
+                Registro de Cliente:
+            </h1>
+        
+            <form [formGroup]="clienteForm" (ngSubmit)="onValidateSubmit()">
+        
+            
+                <div class="text mt-3 ml-1 mb-2" style="font-style: inherit; font-size: 3vmin;">Nombre(*):</div>
+                <input 
+                type="text"
+                class="form-control"
+                formControlName="nombre"        
+                placeholder="Nombre">
+                <div class="alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                    <div class="container-error-message" *ngIf="nombre.errors.required">
+                        Por favor ingrese un Nombre!
+                    </div>
+                </div>
+             
+                
+                <div class="text mt-3 ml-1 mb-2" style="font-style: inherit; font-size: 3vmin;">Apellido(*):</div>
+                <input 
+                type="text"
+                class="form-control"
+                formControlName="apellido"        
+                placeholder="Apellido">
+                <div class="alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                    <div class="container-error-message" *ngIf="apellido.errors.required">
+                        Por favor ingrese un Apellido!
+                    </div>
+                </div>
+        
+                <div class="text mt-3 ml-1 mb-2" style="font-style: inherit; font-size: 3vmin;">Documento(*):</div>
+                <input 
+                type="text"
+                class="form-control"
+                formControlName="dni"        
+                placeholder="Documento">
+                <div class="alert-danger" *ngIf="dni.invalid && (dni.dirty || dni.touched)">
+                    <div class="container-error-message" *ngIf="dni.errors.required">
+                        Por favor ingrese un documento!
+                    </div>
+                    <div class="container-error-message" *ngIf="dni.errors.pattern">
+                        Por favor ingrese solo numeros!
+                    </div>
+                    <div class="container-error-message">
+                        Por favor ingrese un documento valido!
+                    </div>
+                   
+                </div>
+                
+        
+                <div class="text mt-3 ml-1 mb-2" style="font-style: inherit; font-size: 3vmin;">Telefono(*):</div>
+                <input 
+                type="text"
+                class="form-control"
+                formControlName="telefono"        
+                placeholder="Numero de telefono">
+                <div class="alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                    <div class="container-error-message" *ngIf="telefono.errors.required">
+                        Por favor ingrese un numero de telefono!
+                    </div>
+                    <div class="container-error-message" *ngIf="telefono.errors.pattern">
+                        Por favor ingrese solo numeros!
+                    </div>
+                </div>
+
+                <div class="text mt-3 ml-1 mb-2" style="font-style: inherit; font-size: 3vmin;">Correo Electronico(*):</div>
+                <input 
+                type="text"
+                class="form-control"
+                formControlName="mail"        
+                placeholder="Direccion e-mail">
+                <div class="alert-danger" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+                    <div class="container-error-message" *ngIf="mail.errors.required">
+                        Por favor ingrese un correo electronico!
+                    </div>
+                    <div class="container-error-message" *ngIf="mail.errors.pattern">
+                        Por favor ingrese un correo electronico valido!
+                    </div>
+                </div>
+        
+                <div class="text mt-3 ml-1 mb-2" style="font-style: inherit; font-size: 3vmin;">Domicilio:</div>
+                <input 
+                type="text"
+                class="form-control"
+                formControlName="direccion"        
+                placeholder="Domicilio">
+
+
+                <div class="alert alert-danger mt-2" *ngIf="isRegistred">
+                    <i class="fas fa-exclamation-circle"></i>
+                        <strong>
+                            Ya existe un cliente registrado con el mismo dni!
+                        </strong>
+                </div>
+
+                <div class="form-group mt-2">
+                    <button class="btn btn-success" type="submit">
+                        <i class="fas fa-plus-circle" ></i> Agregar Cliente
+                    </button>
+    
+                    <button class="btn btn-danger ml-3" type="reset" (click)="resetForm()">
+                        <i class="fas fa-sync-alt"></i> Resetear campos
+                    </button>
+
+
+                    <!--<button class="btn btn-warning ml-3" (click)="onValidateSubmit()">
+                        Probar validacion: tener dni!
+                    </button> -->
+    
+                </div>
+                
+
+                <div class="alert alert-info mt-2">
+                    <strong>(*):</strong> campo obligatorio!
+                </div>   
+
+            </form>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+<!-- <div class="card mt-5 ml-5 mr-5">
+    <div class="card-body">
+        <form #formCliente="ngForm" (ngSubmit)="guardarCliente(formCliente)">
+            
+   
+            <div class="form-group">
+                Nombre:
+                <input
+                    type="text"
+                    class="form-control"
+                    name="nombre"
+                    #nombre="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.nombre"
+                    placeholder="Nombre"
+                >
+            </div>
+
+
+            <div class="form-group">
+                Apellido:
+                <input
+                    type="text"
+                    class="form-control"
+                    name="apellido"
+                    #apellido="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.apellido"
+                    placeholder="Apellido"
+                >
+            </div>
+
+            <div class="form-group">
+                Documento:
+                <input disabled 
+                    type="text"
+                    class="form-control"
+                    name="dni"
+                    #dni="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.dni"
+                    placeholder="DNI"
+                >
+            </div>
+
+            <div class="form-group">
+                Telefono:
+                <input
+                    type="text"
+                    class="form-control"
+                    name="telefono"
+                    #telefono="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.telefono"
+                    placeholder="Telefono"
+                >
+            </div>
+
+            <div class="form-group">
+                E-mail:
+                <input
+                    type="text"
+                    class="form-control"
+                    name="mail"
+                    #mail="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.mail"
+                    placeholder="E-mail"
+                >
+            </div>
+
+            <div class="form-group">
+                Domicilio:
+                <input
+                    type="text"
+                    class="form-control"
+                    name="direccion"
+                    #direccion="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.direccion"
+                    placeholder="Domicilio"
+                >
+            </div>
+
+           
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-plus-circle" ></i> Guardar cambios 
+                </button>
+
+                <button class="btn btn-danger ml-3"
+                [routerLink]="['/clientes/listacliente']">
+                    <i class="fas fa-list"></i> Volver atras
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+ -->
+
+
+<!-- <div class="card mt-5 ml-5 mr-5">
+    <div class="card-body">
+        <form #formCliente="ngForm" (ngSubmit)="onSubmit(formCliente)">
+            
+            <input 
+                type="hidden" 
+                name="$key" 
+                #$key="ngModel" 
+                [(ngModel)]="clienteService.selectedCliente.$key"
+            >
+            
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="nombre"
+                    #nombre="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.nombre"
+                    placeholder="Nombre"
+                >
+            </div>
+
+
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="apellido"
+                    #apellido="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.apellido"
+                    placeholder="Apellido"
+                >
+            </div>
+
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="dni"
+                    #dni="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.dni"
+                    placeholder="DNI"
+                >
+            </div>
+
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="telefono"
+                    #telefono="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.telefono"
+                    placeholder="Telefono"
+                >
+            </div>
+
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="mail"
+                    #mail="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.mail"
+                    placeholder="E-mail"
+                >
+            </div>
+
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="direccion"
+                    #direccion="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.direccion"
+                    placeholder="Domicilio"
+                >
+            </div>
+
+            <div class="form-group">
+                <button 
+                 class="btn btn-primary"
+                 type="submit"
+                >
+                    <i class="fas fa-plus-circle" ></i> 
+                    Agregar Cliente
+                </button>
+
+                <button class="btn btn-secondary ml-3" type="reset" (click)="resetForm(formCliente)">
+                    <i class="fas fa-sync-alt"></i> Resetear campos
+                </button>
+
+                <button class="btn btn-secondary ml-3" type="reset" (click)="resetForm(formCliente)"
+                [routerLink]="['/clientes/listacliente']">
+                    <i class="fas fa-list"></i> Ver la lista de clientes
+                </button>
+
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+ -->

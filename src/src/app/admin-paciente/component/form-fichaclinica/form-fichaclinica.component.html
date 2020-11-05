@@ -1,0 +1,147 @@
+<div class="card mt-5">
+  <div class="card-body">
+    <h1 class="text-center" style="font-size: xx-large; color: #006fff;"> Registrar Mascota </h1>
+    &nbsp;
+
+<form #formMascota="ngForm" (ngSubmit)="onSubmit(formMascota)">
+
+<div class="form-group row ">
+<label for="nombre" class="col-sm-1 col-form-label" style="font-size: 17px;">Nombre  * </label>
+<div class="col-sm-10">
+   <input   type="text"
+   class="form-control"
+   name="nombre"
+   #nombre="ngModel"
+   [(ngModel)]="mascotaService.selectedMascota.nombre"
+   required>
+</div>
+</div>
+<div *ngIf="nombre.touched && !nombre.valid"> 
+<div *ngIf="nombre.errors.required" style="color: rgb(248, 6, 6); font-size: medium; text-indent: 140px;">El nombre es requerido *</div> 
+</div>
+  
+<div class="form-group row">
+<label for="dni" class="col-sm-1 col-form-label" style="font-size: 17px;">Dni del dueño  *</label>
+<div class="col-sm-10">
+  <input   type="text"
+  class="form-control"
+  name="dni"
+  #dni="ngModel"
+  [(ngModel)]="propietario.dni"
+  ngModel required>
+</div>
+</div>
+<div *ngIf="dni.touched && !dni.valid"> 
+<div *ngIf="dni.errors.required" style="color:#f8061e; font-size: medium; text-indent: 140px;">El dni del dueño es requerido *</div> 
+</div>
+    
+        
+<div class="form-group row ">
+<label for="nombre" class="col-sm-1 col-form-label" style="font-size: 17px;">Especie  * </label>
+<div class="col-sm-10">
+  <input   type="text"
+    class="form-control"
+    name="especie"
+    #especie="ngModel"
+    [(ngModel)]="mascotaService.selectedMascota.especie"
+    required>
+</div>
+</div>
+<div *ngIf="especie.touched && !especie.valid"> 
+<div *ngIf="especie.errors.required" style="color: rgb(248, 6, 6); font-size: medium; text-indent: 140px;">La especie de la mascota es requerido *</div> 
+</div>
+
+<div class="form-group row ">
+<label for="nombre" class="col-sm-1 col-form-label" style="font-size: 17px;">Raza  *</label> 
+<div class="col-sm-10">
+  <input   type="text"
+    class="form-control"
+    name="raza"
+    #raza="ngModel"
+    [(ngModel)]="mascotaService.selectedMascota.raza"
+    required>
+</div>
+</div>
+<div *ngIf="raza.touched && !raza.valid"> 
+<div *ngIf="raza.errors.required" style="color: rgb(248, 6, 6); font-size: medium; text-indent: 140px; ">La raza de la mascota es requerido *</div> 
+</div>
+
+ 
+<div class="form-group row">
+<label for="nombre" class="col-sm-1 col-form-label" style="font-size: 17px; ">Fecha de Nacimiento</label>
+<div class="col-sm-10">
+  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickeredad" name="fechaNacimiento"
+  #fechaNacimiento="ngModel"
+  [(ngModel)]="mascotaService.selectedMascota.fechaNacimiento"
+  placeholder="fechaNacimiento"
+   required>
+   <mat-datepicker-toggle matSuffix [for]="pickeredad"></mat-datepicker-toggle>
+  <mat-datepicker #pickeredad></mat-datepicker>
+</div>
+</div>
+<div *ngIf="fechaNacimiento.touched && !fechaNacimiento.valid"> 
+  <div *ngIf="fechaNacimiento.errors.required" style="color: rgb(248, 6, 6); font-size: medium; text-indent: 140px; ">ingrese una Fecha Validad*</div> 
+  </div>
+
+<div class="form-group row ">
+<label for="nombre" class="col-sm-1 col-form-label" style="font-size: 17px;"> Peso-Kg</label>
+<div class="col-sm-10">
+  <input type="text"
+   class="form-control"
+   name="peso"
+   #peso="ngModel"
+   [(ngModel)]="mascotaService.selectedMascota.peso">
+</div>
+</div>
+
+<div class="form-group row ">
+<label for="nombre" class="col-sm-1 col-form-label" style="font-size: 17px;"> Sexo</label>
+<div class="col-sm-2" >
+  <div class="form-control">
+    <label class="radio-inline">
+      <input type="radio"
+       name="genero" 
+       #genero="ngModel"
+       value="macho" [(ngModel)]="mascotaService.selectedMascota.genero" 
+       ng-value="macho">
+       Macho 
+    </label>         
+    <mat-label  class="radio-inline">
+      <input type="radio" 
+       name="genero" 
+       #genero="ngModel"
+       value="hembra" [(ngModel)]="mascotaService.selectedMascota.genero" 
+       ng-value="hembra">
+        Hembra
+    </mat-label >
+  </div>
+</div>
+</div>
+
+     
+<div class="form-group row ">
+<label for="nombre" class="col-sm-1 col-form-label" style="font-size: 17px;"> Fecha de Ingreso</label>
+<div class="col-sm-10" >
+  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" name="fechaIngreso"
+  #fechaIngreso="ngModel"
+  [(ngModel)]="mascotaService.selectedMascota.fechaIngreso"
+  placeholder="fechaIngreso" required>
+   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+   <mat-datepicker #picker></mat-datepicker>
+</div>
+</div>
+<div *ngIf="fechaIngreso.touched && !fechaIngreso.valid"> 
+  <div *ngIf="fechaIngreso.errors.required" style="color: rgb(248, 6, 6); font-size: medium; text-indent: 140px; ">ingrese una Fecha Validad*</div> 
+  </div>
+<div class="form-group">
+  <button class="btn btn-primary" type="submit" [disabled]="formMascota.invalid">
+              <i class="fas fa-plus-circle" ></i> Registrar nuevo mascota
+  </button>
+  <button class="btn btn-secondary ml-3" type="reset" (click)="resetForm(formMascota)">
+              <i class="fas fa-sync-alt"></i> Reset
+  </button>
+</div>
+             
+</form>
+
+

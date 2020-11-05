@@ -1,0 +1,67 @@
+<mat-form-field>
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Por ejemplo 'el perro pepe'" #input>
+  </mat-form-field>
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+  
+    <!-- Position Column -->
+
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="raza">
+      <th mat-header-cell *matHeaderCellDef> raza </th>
+      <td mat-cell *matCellDef="let element"> {{element.peso}} </td>
+    </ng-container>
+    <ng-container matColumnDef="especie">
+      <th mat-header-cell *matHeaderCellDef> especie </th>
+      <td mat-cell *matCellDef="let element"> {{element.especie}} </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="peso">
+      <th mat-header-cell *matHeaderCellDef> peso </th>
+      <td mat-cell *matCellDef="let element"> {{element.peso}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+ 
+    <ng-container matColumnDef="fecha-ingreso">
+      <th mat-header-cell *matHeaderCellDef> fecha-ingreso </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaIngreso.toDate() | date:'dd/MM/yyyy'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="fecha-nacimiento">
+      <th mat-header-cell *matHeaderCellDef> fecha-nacimiento </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento.toDate() | date:'dd/MM/yyyy'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      
+      <td mat-cell *matCellDef="let element">
+      
+      <button class="btn btn-secondary text-white" [routerLink]="['/mascotas/historialClinico/ ',element.id]"               
+      (click)="selectFichaClinica(element)"> 
+      <i class="far fa-clipboard"></i> </button>
+      
+      <button class="btn btn-secondary text-white" [routerLink]="['/mascotas/edit',element.id]"               
+      (click)="chargeSelectedMascota(element)"> 
+          <i class="fas fa-edit"></i></button>
+        
+    </td>
+    </ng-container>
+  
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No hay resultado para la busqueda "{{input.value}}"</td>
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  

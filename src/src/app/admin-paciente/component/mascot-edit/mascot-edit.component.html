@@ -1,0 +1,133 @@
+<div class="card mt-5">
+  <div class="card-body">
+    <h1 class="text-center" style="font-size: xx-large; color: #006fff;"> Ficha Clinica </h1>
+
+    <button class="btn btn-primary float-right" [routerLink]="['/mascotas/historialClinico']">  Historial Clinico
+      <i class="fas fa-search"></i>
+      </button>
+  
+  
+   <form  [formGroup]="mascotaForm" (ngSubmit)="guardarMascota()">
+     
+    <div class="form-group">
+      <mat-label >Nombre  </mat-label >
+ 
+       <input type="text"
+
+       class="form-control"
+       name="nombre"
+       formControlName="nombre"
+       placeholder="Nombre" required>
+      </div>
+      <div *ngIf="nombre.touched && !nombre.valid"> 
+      <div *ngIf="nombre.errors.required">Nombre es requerido</div> 
+      
+    </div>
+
+    
+        
+
+ <div class="form-group">
+  <mat-label >Especie </mat-label >
+  <input   type="text"
+  class="form-control"
+  name="especie"
+  formControlName="especie"
+  placeholder="Especie" required>
+</div>
+
+<div *ngIf="especie.touched && !especie.valid"> 
+ <div *ngIf="especie.errors.required">la Especie de la mascota es requerido</div> 
+ </div>
+
+ <div class="form-group">
+  <mat-label >Raza </mat-label >
+  <input type="text"
+  class="form-control"
+  name="raza"
+  formControlName="raza"
+
+  placeholder="Raza"required>
+</div>
+<div *ngIf="raza.touched && !raza.valid"> 
+ <div *ngIf="raza.errors.required">la raza de la mascota es requerido</div> 
+ </div>
+
+ <div class="form-group">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Fecha de Nacimiento </mat-label>
+    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerage" 
+    class="form-control" 
+    name="fechaNacimiento"
+    formControlName="fechaNacimiento"
+    placeholder="fechaNacimiento" required>
+    <mat-datepicker-toggle matSuffix [for]="pickerage"></mat-datepicker-toggle>
+    <mat-datepicker #pickerage></mat-datepicker>
+  </mat-form-field>
+ </div>
+ <div *ngIf="fechaNacimiento.touched && !fechaNacimiento.valid"> 
+  <div *ngIf="fechaNacimiento.errors.required">ingrese fecha valida</div> 
+  </div>
+
+ <div class="form-group">
+  <mat-label >Peso </mat-label >
+  <input   type="text"
+  class="form-control"
+  name="peso"
+  formControlName="peso"
+  placeholder="Peso(kg)">
+ </div>
+     
+ <div class="form-group">
+
+  <mat-label >Genero </mat-label >
+  <div class="form-control">
+    <label class="radio-inline">
+      <input type="radio"
+       name="genero" 
+       formControlName="genero"
+       value="macho" 
+       ng-value="macho">
+      M 
+    </label>
+    
+    <mat-label  class="radio-inline">
+      <input type="radio" 
+      name="genero" 
+      formControlName="genero"
+      value="hembra" 
+      ng-value="hembra">
+       H
+    </mat-label >
+  </div>
+</div>
+
+<div class="form-group">
+
+ <mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Fecha de ingreso </mat-label>
+ 
+    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="fechaIngreso" 
+
+    class="form-control" 
+    name="fechaIngreso"
+    formControlName="fechaIngreso"
+    placeholder="fechaIngreso" required>
+  <mat-datepicker-toggle matSuffix [for]="fechaIngreso"></mat-datepicker-toggle>
+  <mat-datepicker #fechaIngreso></mat-datepicker>
+</mat-form-field>
+ </div>
+
+
+ 
+         <div class="form-group">
+          <button class="btn btn-primary" type="submit" [disabled]="mascotaForm.invalid">
+              <i class="fas fa-plus-circle" ></i> Guardar cambios
+          </button>
+          <button class="btn btn-secondary ml-3" type="reset" (click)="resetForm()">
+              <i class="fas fa-sync-alt"></i> Reset
+          </button>
+      </div>
+   
+        
+      </form>

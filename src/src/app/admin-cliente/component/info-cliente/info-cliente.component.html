@@ -1,0 +1,78 @@
+<div class="card mt-5 ml-5 mr-5">
+    <div class="card-body">
+        
+        <h1 class="text-left tl-2" style="font-size: xx-large; color: #006fff;">Informacion del Cliente </h1>
+       
+        <div class="card-body">
+            <table>
+                <thead>
+                    <div class="row">
+                        <div class="col">
+                            <h2>Nombre: </h2>
+                        </div>
+    
+                        <div class="col"><h2 style="color: cornflowerblue;">{{cliente.nombre}}</h2></div>
+                        <div class="col" style="text-align: left;"><h2 style="color: cornflowerblue;">{{cliente.apellido}}</h2></div>
+    
+                        <div class="col">
+                            <h2>Documento: </h2>
+                        </div>
+                        <div class="col" style="text-align: left;"><h2 style="color: cornflowerblue;">{{cliente.dni}}</h2></div>
+    
+                        <div class="col">
+                            <h2>Telefono: </h2>
+                        </div>
+                        <div class="col"><h2 style="color: cornflowerblue;">{{cliente.telefono}}</h2></div>
+    
+                    
+                        <div class="row">
+                            <div class="col" style="text-align: right;">
+                                <h2>E-mail: </h2>
+                            </div>
+                         <div class="col"
+                         style="text-align: left;"
+                         ><h2 style="color: cornflowerblue;">{{cliente.mail}}</h2></div>
+        
+                </div>
+
+                     <div class="col" style="text-align: right;">
+                        <h2>Domicilio: </h2>
+                    </div>
+                    <div class="col"
+                    style="text-align: left;"
+                    ><h2 style="color: cornflowerblue;">{{cliente.direccion}}</h2></div>
+                    </div>
+                    
+                </thead>
+                
+                <tbody>
+
+                </tbody>
+                
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="card mt-5 ml-5 mr-5 mb-5">
+    <div class="card-body">
+
+        <h1 class="text-left tl-2" style="font-size: xx-large; color: #006fff;">Mascotas </h1>
+       
+        <tr>
+            <app-tablec-mascota></app-tablec-mascota>
+        </tr>
+       
+      
+        <tr style="align-content: center;">
+            <button class="btn btn-primary"
+            [routerLink]="['/mascotas/create']" 
+            >
+                <i class="fas fa-plus-circle"></i> Agregar Mascota
+                </button>
+        </tr>
+
+    </div>
+</div>
